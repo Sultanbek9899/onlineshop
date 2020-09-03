@@ -29,6 +29,14 @@
 								</address>									
 								<h4><strong>${{product.price}}</strong></h4>
 							</div>
+							<div class="span5">
+								<form class="form-inline" action="{%url 'cart_add' product.id%}" method="post">
+									{{cart_product_form.label}}
+									{{cart_product_form}}
+									{% csrf_token %}
+									<input class="btn btn-inverse" type="submit" value="Добавить в корзину">
+								</form>
+							</div>
 
 						</div>
 						<div class="row">

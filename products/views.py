@@ -3,6 +3,9 @@ from .models import Category,Product
 
 
 # Create your views here.
+from cart.forms import CartAddProductForm
+
+
 def product_list(request, category_slug=None): #category_slug  нужен для создание url категорий
     #If categories don't exist,  it must be None
     category = None
@@ -22,4 +25,7 @@ def product_list(request, category_slug=None): #category_slug  нужен для
 
 def product_detail(request, id, slug):
     product = get_object_or_404(Product, slug=slug, id=id, status=True)
-    return render(request, 'product_detail.html', context={'product':product})
+    cart_product_form = CartAddProductForm()
+    return render(request, 'product_detail.html', context={'product': product,
+                                                           'cart_product_form': cart_product_form
+                                                           })
