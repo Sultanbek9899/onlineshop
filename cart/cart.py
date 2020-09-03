@@ -2,8 +2,8 @@ from decimal import Decimal
 from django.conf import settings
 from store.products.models import Product
 
-class Cart(object):
 
+class Cart(object):
     def __init__(self, request):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSIONS_ID)
@@ -18,15 +18,15 @@ class Cart(object):
         '''
         product_id = str(product.id)
         if product_id not in self.cart:
-            self.cart[product_id]={'quantity':0, 'price':str(product.price)}
+            self.cart[product_id] = {'quantity':0, 'price':str(product.price)}
         if update_quantity:
             self.cart[product_id]['quantity'] = quantity
         else:
-            self.cart[product_id]['quantity'] +=quantity
+            self.cart[product_id]['quantity'] += quantity
         self.save()
 
     def save(self):
-        self.session.modified=True
+        self.session.modified = True
 
     def remove(self, product):
         ''' Удаление товара из корзины'''
@@ -56,3 +56,8 @@ class Cart(object):
         '''Возвращает общую сумму товаров в корзине'''
         return sum(Decimal(item['price']) * item['quantity']
                    for item in self.cart.values())
+
+    def clear(self):
+        # очистка корзины
+        del self.session[settings.CART_SESSION_ID]
+        self.save()
