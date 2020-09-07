@@ -30,7 +30,7 @@ class Cart(object):
 
     def remove(self, product):
         ''' Удаление товара из корзины'''
-        product_id= str(product.id)
+        product_id = str(product.id)
         if product_id in self.cart:
             del self.cart[product_id]
         self.save()
@@ -46,7 +46,7 @@ class Cart(object):
         for item in cart.values():
             item['price'] = Decimal(item['price'])
             item['total_price'] = item['price']*item['quantity']
-        yield item
+            yield item
 
     def __len__(self):
         '''Возвращает общее количество товаров в корзине'''

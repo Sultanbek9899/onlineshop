@@ -1,0 +1,29 @@
+{%extends 'base.html'%}
+
+{%block title%}
+    Оформление заказа
+{%endblock%}
+
+
+{%block content%}
+<div class="span12">
+	<div class="accordion-inner">
+		<div class="row-fluid">
+			<div class="span6">
+				<h4>Your Personal Details</h4>
+				<div class="control-group">
+					<label class="control-label">First Name</label>
+					<div class="controls">
+						<input type="text" placeholder="" class="input-xlarge">
+					</div>
+				</div>
+				<form action="." method="post" class="order-form">
+					{{ form.as_p }}
+					<p><input type="submit" value="Place order"></p>
+					{% csrf_token %}
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock%}
