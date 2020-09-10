@@ -60,7 +60,19 @@
 
 
 							<li><a href="checkout.html">Checkout</a></li>					
-							<li><a href="register.html">Login</a></li>		
+							<li>
+								{% if request.user.is_authenticated %}
+									{{request.user.first_name}}<a href="{%url 'logout' %}">Выйти</a>
+								{%else%}
+									<a href="{%url 'login' %}">Войти</a>
+								{%endif%}
+							</li>
+							{% if not request.user.is_authenticated %}
+							<li>
+								<a href="{% url 'register' %}"> Регистрация</a>
+							</li>
+							{% endif %}
+
 						</ul>
 					</div>
 				</div>
