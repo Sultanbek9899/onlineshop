@@ -23,7 +23,7 @@ def user_login(request):
             return HttpResponse('Неправильный логин или пароль')
     else:
         form = LoginForm()
-    return render(request, 'account/login.html',context={'form':form})
+    return render(request, 'login.html',context={'form':form})
 
 
 def register(request):
@@ -34,8 +34,8 @@ def register(request):
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
             return render(request,
-                          'account/register_done.html',
+                          'register_done.html',
                           context={'new_user': new_user})
     else:
         user_form= UserRegistrationForm()
-    return render(request, 'account/register.html', context={'user_form':user_form})
+    return render(request, 'register.html', context={'user_form':user_form})

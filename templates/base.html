@@ -57,12 +57,11 @@
 								{%endif%}
 								{%endwith%}
 							</li>
-
-
 							<li><a href="checkout.html">Checkout</a></li>					
 							<li>
 								{% if request.user.is_authenticated %}
 									{{request.user.first_name}}<a href="{%url 'logout' %}">Выйти</a>
+									<a href="{%url 'password_change'%}">Изменить пароль</a>
 								{%else%}
 									<a href="{%url 'login' %}">Войти</a>
 								{%endif%}

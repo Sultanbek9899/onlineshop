@@ -18,14 +18,14 @@ class LoginForm(forms.Form):
 
 
 class UserRegistrationForm(forms.ModelForm):
-    attributs = {
+    attributes = {
             'placeholder': "Пароль",
             'class': "input-xlarge"
     }
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput(
-        attrs=attributs))
+        attrs=attributes))
     password2 = forms.CharField(label='Повторите пароль',widget=forms.PasswordInput(
-        attrs=attributs))
+        attrs=attributes))
 
     class Meta:
         model = User
